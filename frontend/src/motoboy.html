@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Motoboy</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { text-align: center; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 10px; margin: 5px; background: #f0f0f0; display: flex; justify-content: space-between; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Painel do Motoboy</h1>
+    <h2>Entregas Pendentes</h2>
+    <ul id="deliveryList"></ul>
+
+    <script>
+        const socket = io('http://localhost:3000'); // URL do seu backend
+
+        // Receber entregas pendentes
+        async function fetchDeliveries() {
+            const response = await fetch('http://localhost:3000/api/deliveries/pending');
+            const deliveries = await response.json();
+            const deliveryList = document.getElementById('deliveryList');
+            deliveryList.innerHTML = ''; // Limpa a lista antes de popular
+
+            deliveries.forEach(delivery => {
+                const li = document.createElement('li');
+                li.textContent = `Entrega para: ${delivery.address}`;
+                const acceptButton = document.createElement('button');
+                acceptButton.textContent = 'Aceitar';
+                acceptButton.onclick = () => {
+                    acceptDelivery(delivery.id);
+                };
+                li.appendChild(acceptButton);
+                deliveryList.appendChild(li);
+            });
+        }
+
+        // Aceitar entrega
+        function acceptDelivery(deliveryId) {
+            socket.emit('acceptDelivery', deliveryId);
+            fetchDeliveries(); // Atualiza a lista após aceitar
+        }
+
+        // Atualiza a lista de entregas a cada 5 segundos
+        setInterval(fetchDeliveries, 5000);
+        fetchDeliveries(); // Carrega as entregas na inicialização
+    </script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.navbar-brand .logo {
+    width: 120px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar-brand:hover .logo {
+    transform: rotate(360deg);
+}
+
+.banner {
+    background: url('/img/CAPA-MOTO-DELIVERY.png') no-repeat center center/cover;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-text h1 {
+    font-size: 3rem;
+    animation: fadeInDown 1.5s ease-in-out;
+}
+
+.banner-text p {
+    font-size: 1.5rem;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+.service-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+.img-animated {
+    transition: transform 0.5s;
+}
+
+.img-animated:hover {
+    transform: rotateY(360deg);
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .banner-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .banner-text p {
+        font-size: 1.2rem;
+    }
+}
+
+/* Animações */
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}

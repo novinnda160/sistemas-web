@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Entregas - Pagamento e Clientes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+  
+</head>
+
+<body>
+    <!-- Menu de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Painel de Entregas</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Solicitar Entrega</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="client.html">Cadastrar Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="calcular.html">calcular caixa</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="payment.html">Pagamento</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Seção de Clientes -->
+            <div class="col-md-6">
+                <h2 class="mb-4">Gerenciar Clientes</h2>
+
+                <!-- Formulário para adicionar cliente -->
+                <form id="clientForm">
+                    <div class="form-group">
+                        <label for="clientName">Nome do Cliente</label>
+                        <input type="text" id="clientName" class="form-control" placeholder="Digite o nome do cliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">Email do Cliente</label>
+                        <input type="email" id="clientEmail" class="form-control" placeholder="Digite o email do cliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Telefone do Cliente</label>
+                        <input type="tel" id="clientPhone" class="form-control" placeholder="Digite o telefone do cliente" required>
+                    </div>
+                    <button type="button" class="btn btn-success" id="createClient">Adicionar Cliente</button>
+                </form>
+
+                <h3 class="mt-5">Lista de Clientes</h3>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientList"></tbody>
+                </table>
+            </div>
+
+            <!-- Seção de Pagamentos -->
+            <div class="col-md-6">
+                <h2 class="mb-4">Pagamento de Entregas</h2>
+
+                <!-- Formulário para criar fatura -->
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="clientId">ID do Cliente</label>
+                        <input type="text" id="clientId" class="form-control" placeholder="Digite o ID do cliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryValue">Valor da Entrega</label>
+                        <input type="number" id="deliveryValue" class="form-control" placeholder="Digite o valor da entrega" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="createInvoice">Criar Fatura</button>
+                </form>
+
+                <h3 class="mt-5">Histórico de Pagamentos</h3>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>ID da Fatura</th>
+                            <th>ID do Cliente</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentHistory"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center bg-dark text-white py-3 mt-5">
+        <p>&copy; 2024 - Painel de Entregas</p>
+    </footer>
+
+</body>
+
+<script src="js/client.js"></script>
+<script src="js/payment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+</html>

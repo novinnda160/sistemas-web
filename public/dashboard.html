@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/adms.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <h2>Painel Admin</h2>
+            <nav>
+                <ul>
+                    <li><a href="dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="clientes"><i class="fas fa-users"></i> Clientes</a></li>
+                    <li><a href="motoboys"><i class="fas fa-motorcycle"></i> Motoboys</a></li>
+                    <li><a href="financeiro"><i class="fas fa-chart-line"></i> Financeiro</a></li>
+                    <li><a href="entregas"><i class="fas fa-truck"></i> Entregas em Tempo Real</a></li>
+                    <li><a href="config"><i class="fas fa-cog"></i> Configurações</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <h1>Bem-vindo, Admin</h1>
+                <div class="topbar-right">
+                    <button class="logout-btn"><i class="fas fa-sign-out-alt" ></i> Logout</button>
+                    <a class="nav-link" href="loggin.html"></a>
+
+                </div>
+            </header>
+
+            <!-- Dashboard Overview Section -->
+            <section id="dashboard" class="dashboard-section">
+                <h2>Visão Geral</h2>
+                <div class="stats-overview">
+                    <div class="stat-box">
+                        <h3>Total de Corridas no Mês</h3>
+                        <p id="totalCorridas">...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Faturamento</h3>
+                        <p id="faturamento">R$ ...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Gastos com Motoboys</h3>
+                        <p id="gastosMotoboys">R$ ...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CRUD Clientes Section -->
+            <section id="clientes" class="crud-section">
+                <h2>Clientes</h2>
+                <button class="add-btn"><i class="fas fa-plus"></i> Adicionar Cliente</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientesTableBody">
+                        <!-- Clientes serão preenchidos dinamicamente aqui -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- CRUD Motoboys Section -->
+            <section id="motoboys" class="crud-section">
+                <h2>Motoboys</h2>
+                <button class="add-btn"><i class="fas fa-plus"></i> Adicionar Motoboy</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="motoboysTableBody">
+                        <!-- Motoboys serão preenchidos dinamicamente aqui -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Financeiro Section -->
+            <section id="financeiro" class="financeiro-section">
+                <h2>Financeiro</h2>
+                <div class="finance-stats">
+                    <div class="stat-box">
+                        <h3>Total de Faturamento</h3>
+                        <p id="totalFaturamento">R$ ...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Gastos com Motoboys</h3>
+                        <p id="totalGastosMotoboys">R$ ...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Lucro Líquido</h3>
+                        <p id="lucroLiquido">R$ ...</p>
+                    </div>
+                </div>
+                <div id="financeGraphContainer">
+                    <!-- Placeholder para gráfico -->
+                    <canvas id="financeGraph"></canvas>
+                </div>
+            </section>
+
+            <!-- Entregas em Tempo Real Section -->
+            <section id="entregas" class="real-time-section">
+                <h2>Entregas em Tempo Real</h2>
+                <div id="realTimeDeliveryList">
+                    <!-- Entregas em tempo real serão exibidas aqui -->
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        async function logout() {
+            await fetch('/api/logout', { method: 'POST' }); // Logout endpoint to clear session
+            window.location.href = '/login'; // Redirect to login page
+        }
+        
+    </script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

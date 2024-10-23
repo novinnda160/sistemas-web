@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Motoboy</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/motoboy.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Painel do Motoboy</h1>
+
+        <div id="alertContainer"></div>
+
+        <div class="delivery-info">
+            <label for="searchAddress">Endereço de Busca:</label>
+            <input type="text" id="searchAddress" placeholder="Endereço de Busca" required readonly>
+
+            <label for="deliveryAddress">Endereço de Entrega:</label>
+            <input type="text" id="deliveryAddress" placeholder="Endereço de Entrega" required readonly>
+
+            <label for="deliveryFee">Valor da Corrida:</label>
+            <input type="text" id="deliveryFee" value="5,00" readonly>
+
+            <button id="acceptDelivery">Aceitar Corrida</button>
+        </div>
+
+        <div class="financial-info">
+            <h2>Informações Financeiras</h2>
+            <p>Valor Total de Entregas: <span id="totalEarnings">0,00</span></p>
+            <p>Corridas Aceitas: <span id="acceptedDeliveries">0</span></p>
+        </div>
+
+        <div class="delivery-list">
+            <h2>Entregas Recebidas</h2>
+            <ul id="deliveryList">
+                <!-- Lista de entregas será preenchida dinamicamente -->
+            </ul>
+        </div>
+    </div>
+<script src="js/motoboy.js"></script>
+</body>
+</html>

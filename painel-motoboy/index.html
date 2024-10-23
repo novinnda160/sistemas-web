@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Motoboy - Receber Entregas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        #map {
+            height: 400px;
+            margin-top: 20px;
+        }
+        .btn {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        #loading {
+            display: none; /* Ocultar o loader inicialmente */
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">Painel do Motoboy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Receber Entregas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="history.html">Histórico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center">Receber Entregas</h1>
+
+        <div id="map"></div>
+
+        <div class="mt-4">
+            <h3>Detalhes da Corrida</h3>
+            <p><strong>Endereço de Entrega:</strong> <span id="deliveryAddress">Rua Exemplo, 123</span></p>
+            <p><strong>Endereço de Busca:</strong> <span id="pickupAddress">Avenida Exemplo, 456</span></p>
+            <p><strong>Valor da Corrida:</strong> R$ <span id="rideValue">50.00</span></p>
+            <button id="acceptOrder" class="btn btn-success" aria-label="Aceitar Corrida">Aceitar Corrida</button>
+            <div id="loading">Aceitando corrida...</div> <!-- Loader -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Painel do Motoboy</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+    <script>
+        let map;
+
+        function initMap() {
+            const deliveryLocation = { lat: -19.9174, lng: -43.9345 }; // Coordenadas de exemplo
+            const pickupLocation = { lat: -19.9312, lng: -43.9401 }; // Coordenadas de exemplo
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: deliveryLocation,
+            });
+
+            const deliveryMarker = new google.maps.Marker({
+                position: deliveryLocation,
+                map: map,
+                title: "Endereço de Entrega",
+            });
+
+            const pickupMarker = new google.maps.Marker({
+                position: pickupLocation,
+                map: map,
+                title: "Endereço de Busca",
+            });
+
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            const request = {
+                origin: pickupLocation,
+                destination: deliveryLocation,
+                travelMode: google.maps.TravelMode.DRIVING,
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(result);
+                } else {
+                    console.error("Erro ao obter direções: " + status);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            initOrderAcceptance();
+        });
+
+        function initOrderAcceptance() {
+            $("#acceptOrder").click(acceptOrder);
+        }
+
+        async function acceptOrder() {
+            const deliveryId = 1; // ID da entrega de exemplo
+            $("#loading").show(); // Mostra o loader
+            try {
+                const response = await fetch(`http://localhost:3000/api/deliveries/${deliveryId}/accept`, {
+                    method: 'POST'
+                });
+                if (!response.ok) throw new Error('Erro ao aceitar a corrida');
+                alert('Corrida aceita com sucesso!');
+                $("#acceptOrder").prop("disabled", true); // Desabilita o botão
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao aceitar a corrida.');
+            } finally {
+                $("#loading").hide(); // Esconde o loader
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Marketing</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/painel-adm/admin.css">
+</head>
+<body>
+    <header class="bg-primary text-white">
+        <div class="container">
+            <h1 class="py-3">Gas Marketing</h1>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#produtos">Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#como-funciona">Como Funciona</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contato">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero bg-light text-center">
+        <div class="container">
+            <h2 class="pt-5">Peça seu gás de forma rápida e fácil!</h2>
+            <p>Entrega rápida na sua casa com apenas alguns cliques.</p>
+            <a href="#produtos" class="btn btn-primary btn-lg">Veja nossos produtos</a>
+        </div>
+    </section>
+
+    <section id="produtos" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center">Nossos Produtos</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Gás 13kg">
+                        <div class="card-body">
+                            <h5 class="card-title">Gás 13kg</h5>
+                            <p class="card-text">Ideal para o seu dia a dia.</p>
+                            <a href="#" class="btn btn-primary">Peça agora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Gás 45kg">
+                        <div class="card-body">
+                            <h5 class="card-title">Gás 45kg</h5>
+                            <p class="card-text">Perfeito para grandes necessidades.</p>
+                            <a href="#" class="btn btn-primary">Peça agora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Gás de cozinha">
+                        <div class="card-body">
+                            <h5 class="card-title">Gás de Cozinha</h5>
+                            <p class="card-text">Pronto para suas refeições.</p>
+                            <a href="#" class="btn btn-primary">Peça agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-funciona" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center">Como Funciona</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <h5>1. Escolha seu produto</h5>
+                    <p>Selecione o tipo de gás que você deseja.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>2. Faça seu pedido</h5>
+                    <p>Insira suas informações e confirme o pedido.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>3. Receba em casa</h5>
+                    <p>Um motoboy entregará seu gás rapidamente!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center">Contato</h2>
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="mensagem" class="form-label">Mensagem</label>
+                    <textarea class="form-control" id="mensagem" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-white text-center py-4">
+        <p>&copy; 2024 Gas Marketing. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
