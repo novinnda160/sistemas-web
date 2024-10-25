@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     const clientForm = document.getElementById('clientForm');
     const clientIdInput = document.getElementById('clientId');
@@ -50,7 +49,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // Função para carregar a lista de clientes
     function loadClients() {
         fetch('http://localhost:3000/api/clientes')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar clientes: ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 clientList.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
                 data.forEach(client => {
@@ -83,21 +87,26 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                 });
             })
-            .catch(error => alert('Erro ao carregar clientes: ' + error.message));
+            .catch(error => alert(error.message));
     }
 
     // Função para editar um cliente
     function editClient(clientId) {
         fetch(`http://localhost:3000/api/clientes/${clientId}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar cliente: ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(client => {
                 clientIdInput.value = client.id;
                 document.getElementById('nome').value = client.nome;
                 document.getElementById('cpf').value = client.cpf;
                 document.getElementById('enderecoColeta').value = client.enderecoColeta;
-                document.getElementById('email').value = client.email;
+                document.getElementById('email').value = client.email; // Adicionei email aqui
             })
-            .catch(error => alert('Erro ao carregar cliente: ' + error.message));
+            .catch(error => alert(error.message));
     }
 
     // Função para atualizar um cliente

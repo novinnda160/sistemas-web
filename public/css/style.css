@@ -1,6 +1,8 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-brand .logo {
@@ -19,16 +21,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 0 15px;
 }
 
 .banner-text h1 {
     font-size: 3rem;
     animation: fadeInDown 1.5s ease-in-out;
+    margin: 0;
 }
 
 .banner-text p {
     font-size: 1.5rem;
     animation: fadeInUp 1.5s ease-in-out;
+    margin: 10px 0 0;
 }
 
 .service-card {
@@ -47,9 +53,15 @@ body {
     transform: rotateY(360deg);
 }
 
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;
+    }
+
+    .banner {
+        height: auto;
+        padding: 50px 15px;
     }
 
     .banner-text h1 {
@@ -58,6 +70,33 @@ body {
 
     .banner-text p {
         font-size: 1.2rem;
+    }
+
+    .service-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-text h1 {
+        font-size: 2rem;
+    }
+
+    .banner-text p {
+        font-size: 1rem;
+    }
+
+    .navbar-brand .logo {
+        width: 100px;
+    }
+
+    .banner {
+        flex-direction: column;
+        padding: 30px 15px;
+    }
+
+    .banner-text {
+        padding: 0 10px;
     }
 }
 
